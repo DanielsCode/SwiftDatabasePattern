@@ -17,11 +17,11 @@ class AthletsRealmDataSource: DataSource {
      var notificationToken: NotificationToken? = nil
     
     
-    func getAll() -> [Athlet] {
+    func all() -> [Athlet] {
         return realm.objects(RealmAthlet.self).map { $0.dataEntity }
     }
     
-    func getById(id: String) -> Athlet? {
+    func by(id: String) -> Athlet? {
         let predicate = NSPredicate(format: "id = %@", id)
         let realmAthlet = realm.objects(RealmAthlet.self).filter(predicate).first
         

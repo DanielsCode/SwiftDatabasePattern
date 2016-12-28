@@ -18,5 +18,4 @@ class Athlet {
         self.id = id
         self.name = name
     }
-    
 }
