@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xXB-zw-YjE">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="B6W-MN-dG1">
+            <objects>
+                <tabBarController id="xXB-zw-YjE" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="3ci-Td-YHe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ikM-zl-fGn" kind="relationship" relationship="viewControllers" id="yeA-L9-s3p"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0vX-XX-NWk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-494" y="-254"/>
+        </scene>
+        <!--Athlets-->
+        <scene sceneID="ork-9f-9kO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ikM-zl-fGn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Athlets" id="jdU-Ef-FgJ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ew4-QF-QPa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HnY-jQ-eI4" kind="relationship" relationship="rootViewController" id="wio-dF-Us7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zJO-mq-Ksw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="276" y="-254"/>
+        </scene>
+        <!--Athlets-->
+        <scene sceneID="ie0-7U-52e">
+            <objects>
+                <tableViewController id="HnY-jQ-eI4" customClass="AthletsTVC" customModule="DatabasePattern" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lzb-WZ-rhP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="athletCell" id="5Ud-N4-Xez">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Ud-N4-Xez" id="ecS-5H-uzh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Ehc-Mv-90v" kind="show" identifier="showAthlet" id="Y4k-j8-dds"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HnY-jQ-eI4" id="hmH-3g-jyH"/>
+                            <outlet property="delegate" destination="HnY-jQ-eI4" id="9Hi-bK-Aex"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Athlets" id="3gj-sM-KiG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pvY-HU-mmp">
+                            <connections>
+                                <action selector="addBtnTouched:" destination="HnY-jQ-eI4" id="W9b-Ju-PZr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ftM-9n-Ac5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1023" y="-254"/>
+        </scene>
+        <!--AthletVC-->
+        <scene sceneID="K6x-7E-6va">
+            <objects>
+                <viewController id="Ehc-Mv-90v" customClass="AthletVC" customModule="DatabasePattern" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zIG-FB-ffl"/>
+                        <viewControllerLayoutGuide type="bottom" id="3x7-wp-aDr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lqk-dG-VWW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vUN-OD-EUm">
+                                <rect key="frame" x="16" y="72" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRC-ZT-TmW">
+                                <rect key="frame" x="170" y="110" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveBtnTouched:" destination="Ehc-Mv-90v" eventType="touchUpInside" id="nx3-eK-2es"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XRC-ZT-TmW" firstAttribute="top" secondItem="vUN-OD-EUm" secondAttribute="bottom" constant="8" id="dbb-Nn-Orc"/>
+                            <constraint firstItem="XRC-ZT-TmW" firstAttribute="centerX" secondItem="Lqk-dG-VWW" secondAttribute="centerX" id="jYT-Ju-zDZ"/>
+                            <constraint firstItem="vUN-OD-EUm" firstAttribute="leading" secondItem="Lqk-dG-VWW" secondAttribute="leadingMargin" id="nnV-ql-vQH"/>
+                            <constraint firstItem="vUN-OD-EUm" firstAttribute="top" secondItem="zIG-FB-ffl" secondAttribute="bottom" constant="8" id="oqH-77-6T7"/>
+                            <constraint firstItem="vUN-OD-EUm" firstAttribute="trailing" secondItem="Lqk-dG-VWW" secondAttribute="trailingMargin" id="t7c-US-atc"/>
+                            <constraint firstItem="vUN-OD-EUm" firstAttribute="centerX" secondItem="Lqk-dG-VWW" secondAttribute="centerX" id="wmB-hw-1mG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="athletNameTextField" destination="vUN-OD-EUm" id="7nl-XO-Lkm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N16-4x-iiy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1761" y="-254"/>
+        </scene>
+    </scenes>
+</document>
