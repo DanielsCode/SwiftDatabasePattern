@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 
 # Created by https://www.gitignore.io/api/swift,
 
 ### Swift ###
+=======
+>>>>>>> f0aff6170384d810fda6c3231db1c6022e0b91c6
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
@@ -67,8 +70,11 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+<<<<<<< HEAD
 
 
 #!! ERROR:  is undefined. Use list command to see defined gitignore types !!#
 
 # End of https://www.gitignore.io/api/swift,
+=======
+>>>>>>> f0aff6170384d810fda6c3231db1c6022e0b91c6
