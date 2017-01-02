@@ -9,19 +9,21 @@
 import Foundation
 import CoreData
 
-
 class AthletsCoreDataDataSource: DataSource {
     
     private let coreDataStack = CoreDataStack()
+    private let entityName = "CDAthlet"
     
-    func getAll() -> [Athlet] {
+    func all() -> [Athlet] {
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDAthlet")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         
         do {
-            if let results = try coreDataStack.managedObjectContext.fetch(fetchRequest) as? [CDAthlet] {
-                return results.map { $0.dataEntity }
+            guard let results = try coreDataStack.managedObjectContext.fetch(fetchRequest) as? [CDAthlet] else {
+                return []
             }
+            
+            return results.map { $0.dataEntity }
         } catch {
             print("There was a fetch error")
         }
@@ -29,14 +31,16 @@ class AthletsCoreDataDataSource: DataSource {
     }
     
     
-    func getById(id: String) -> Athlet? {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDAthlet")
+    func by(id: String) -> Athlet? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id == %@", id)
         
         do {
-            if let results = try coreDataStack.managedObjectContext.fetch(fetchRequest) as? [CDAthlet] {
-                return results.first?.dataEntity
+            guard let results = try coreDataStack.managedObjectContext.fetch(fetchRequest) as? [CDAthlet] else {
+                return nil
             }
+            
+            return results.first?.dataEntity
         } catch {
             print("There was a fetch error")
         }
@@ -45,7 +49,7 @@ class AthletsCoreDataDataSource: DataSource {
     
     
     func insert(item: Athlet) {
-        guard let entity = NSEntityDescription.entity(forEntityName: "CDAthlet", in: coreDataStack.managedObjectContext) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: coreDataStack.managedObjectContext) else {
             fatalError("Coudn't find managedObjectContext")
         }
         
@@ -55,7 +59,7 @@ class AthletsCoreDataDataSource: DataSource {
     
     
     func clean() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDAthlet")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try coreDataStack.persistentStoreCoordinator.execute(deleteRequest, with: coreDataStack.managedObjectContext)
@@ -66,17 +70,20 @@ class AthletsCoreDataDataSource: DataSource {
     }
     
     func update(item: Athlet) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDAthlet")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id == %@", item.id)
         do {
-            if let results = try coreDataStack.managedObjectContext.fetch(fetchRequest) as? [CDAthlet] {
-                if let updatedItem = results.first {
-                    updatedItem.name = item.name
-                    updatedItem.id = item.id
-                    coreDataStack.saveContext()
-                }
-                
+            
+            guard
+                let results = try coreDataStack.managedObjectContext.fetch(fetchRequest) as? [CDAthlet],
+                let updatedItem = results.first else {
+                    return
             }
+            
+            updatedItem.name = item.name
+            updatedItem.id = item.id
+            coreDataStack.saveContext()
+            
         } catch {
             print("There was a fetch error")
         }
@@ -87,10 +94,12 @@ class AthletsCoreDataDataSource: DataSource {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDAthlet")
         fetchRequest.predicate = NSPredicate(format: "id == %@", item.id)
         do {
-            if let results = try coreDataStack.managedObjectContext.fetch(fetchRequest) as? [CDAthlet] {
-                for object in results {
-                    coreDataStack.managedObjectContext.delete(object)
-                }
+            guard let results = try coreDataStack.managedObjectContext.fetch(fetchRequest) as? [CDAthlet] else {
+                return
+            }
+            
+            for object in results {
+                coreDataStack.managedObjectContext.delete(object)
             }
         } catch {
             print("There was a fetch error")

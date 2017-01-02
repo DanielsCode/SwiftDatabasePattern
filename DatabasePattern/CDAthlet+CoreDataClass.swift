@@ -23,6 +23,4 @@ public class CDAthlet: NSManagedObject {
         self.name = athlet.name
         self.id = athlet.id
     }
-    
-    
 }

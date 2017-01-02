@@ -21,12 +21,11 @@ enum DataSourceChangeState: Int {
 protocol DataSource {
     associatedtype T
     
-    func getAll() -> [T]
-    func getById(id: String) -> T?
+    func all() -> [T]
+    func by(id: String) -> T?
     func insert(item: T)
     func update(item: T)
-    func clean()
     func delete(item: T)
- 
+    func clean()
 }
 
